@@ -1,4 +1,4 @@
-INFO
+Нужно было установить в тестовой машине mdadm, для этого пришлось поменять base-репозиторий Centos:
 
 sudo vi /etc/yum.repos.d/CentOS-Base.repo
 
