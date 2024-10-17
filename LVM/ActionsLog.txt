@@ -112,6 +112,11 @@ The SSH command responded with a non-zero exit status. Vagrant
 assumes that this means the command failed. The output for this command
 should be in the log above. Please read the output to determine what
 went wrong.
+
+
+---------------------------УСТАНОВКА xfsdump--------------------------------------------------
+
+
 user@user-VirtualBox:~/Desktop/LVM$ vagrant ssh
 [vagrant@lvm ~]$ sudo vi /etc/yum.repos.d/CentOS-Base.repo 
 [vagrant@lvm ~]$ sudo yum install -y xfsdump
@@ -178,6 +183,11 @@ Dependency Installed:
   attr.x86_64 0:2.4.46-13.el7                                                   
 
 Complete!
+
+
+--------------------------------УМЕНЬШЕНИЕ ТОМА--------------------------------------------
+
+
 [vagrant@lvm ~]$ pvcreate /dev/sdb
   WARNING: Running as a non-root user. Functionality may be unavailable.
   /run/lvm/lvmetad.socket: access failed: Permission denied
@@ -580,6 +590,11 @@ Skipping udev rule: 91-permissions.rules
 *** Creating image file ***
 *** Creating image file done ***
 *** Creating initramfs image file '/boot/initramfs-3.10.0-862.2.3.el7.x86_64.img' done ***
+
+
+----------------------------------ТОМ ПОД /var В ЗЕРКАЛО----------------------------------
+
+
 [root@lvm boot]# pvcreate /dev/sdc /dev/sdd
   Physical volume "/dev/sdc" successfully created.
   Physical volume "/dev/sdd" successfully created.
@@ -620,6 +635,11 @@ Writing superblocks and filesystem accounting information: done
 exit
 [root@lvm ~]# reboot
 Connection to 127.0.0.1 closed by remote host.
+
+
+-----------------------------------ТОМ ПОД /home--------------------------------
+
+
 user@user-VirtualBox:~/Desktop/LVM$ vagrant ssh
 ^Cuser@user-VirtualBox:~/Desktop/LVM$ ^C
 user@user-VirtualBox:~/Desktop/LVM$ vagrant ssh
@@ -659,6 +679,11 @@ logout
 [vagrant@lvm ~]$ ^C
 [vagrant@lvm ~]$ exit
 logout
+
+
+-----------------------------------------РАБОТА СО СНЭПШОТАМИ-------------------------------------------
+
+
 user@user-VirtualBox:~/Desktop/LVM$ vagrant ssh
 Last login: Thu Oct 17 16:58:30 2024 from 10.0.2.2
 [vagrant@lvm ~]$ sudo -i
