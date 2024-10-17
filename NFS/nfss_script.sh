@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-apt install nfs-kernel-server
+apt install -y nfs-kernel-server
 
 mkdir -p /srv/share/upload
 chown -R nobody:nogroup /srv/share
