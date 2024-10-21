@@ -13,3 +13,7 @@ sudo vi /etc/yum.repos.d/CentOS-Base.repo
 [centosplus] name=CentOS-$releasever - CentOSPlus baseurl=https://vault.centos.org/7.9.2009/centosplus/$basearch/ gpgcheck=1 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 enabled=0
 
 Также для работоспособности audit2why потребовалось доустановить policycoreutils-python.
+
+Задание 2.
+
+При создании второй машины стенда (client) playbook валится с ошибкой, вывод команд приложил в CommandsList_Task2 - возможно, посоветуете, как починить стенд.
