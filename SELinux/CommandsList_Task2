@@ -1,0 +1,86 @@
+user@user-VirtualBox:~/Desktop/SELinux/otus-linux-adm/selinux_dns_problems$ ansible --version
+ansible 2.10.8
+  config file = None
+  configured module search path = ['/home/user/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.10.12 (main, Sep 11 2024, 15:47:36) [GCC 11.4.0]
+user@user-VirtualBox:~/Desktop/SELinux/otus-linux-adm/selinux_dns_problems$ vagrant up
+Bringing machine 'ns01' up with 'virtualbox' provider...
+Bringing machine 'client' up with 'virtualbox' provider...
+==> ns01: Importing base box 'centos/7'...
+==> ns01: Matching MAC address for NAT networking...
+==> ns01: Checking if box 'centos/7' version '2004.01' is up to date...
+==> ns01: Setting the name of the VM: selinux_dns_problems_ns01_1729540884446_34000
+==> ns01: Fixed port collision for 22 => 2222. Now on port 2201.
+==> ns01: Clearing any previously set network interfaces...
+==> ns01: Preparing network interfaces based on configuration...
+    ns01: Adapter 1: nat
+    ns01: Adapter 2: intnet
+==> ns01: Forwarding ports...
+    ns01: 22 (guest) => 2201 (host) (adapter 1)
+==> ns01: Running 'pre-boot' VM customizations...
+==> ns01: Booting VM...
+==> ns01: Waiting for machine to boot. This may take a few minutes...
+    ns01: SSH address: 127.0.0.1:2201
+    ns01: SSH username: vagrant
+    ns01: SSH auth method: private key
+    ns01: Warning: Remote connection disconnect. Retrying...
+    ns01: Warning: Connection reset. Retrying...
+    ns01: Warning: Connection reset. Retrying...
+    ns01: Warning: Remote connection disconnect. Retrying...
+    ns01: Warning: Connection reset. Retrying...
+    ns01: 
+    ns01: Vagrant insecure key detected. Vagrant will automatically replace
+    ns01: this with a newly generated keypair for better security.
+    ns01: 
+    ns01: Inserting generated public key within guest...
+    ns01: Removing insecure key from the guest if it's present...
+    ns01: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> ns01: Machine booted and ready!
+==> ns01: Checking for guest additions in VM...
+    ns01: No guest additions were detected on the base box for this VM! Guest
+    ns01: additions are required for forwarded ports, shared folders, host only
+    ns01: networking, and more. If SSH fails on this machine, please install
+    ns01: the guest additions and repackage the box to continue.
+    ns01: 
+    ns01: This is not an error message; everything may continue to work properly,
+    ns01: in which case you may ignore this message.
+==> ns01: Setting hostname...
+==> ns01: Configuring and enabling network interfaces...
+==> ns01: Rsyncing folder: /home/user/Desktop/SELinux/otus-linux-adm/selinux_dns_problems/ => /vagrant
+==> ns01: Running provisioner: ansible...
+Vagrant gathered an unknown Ansible version:
+
+
+and falls back on the compatibility mode '1.8'.
+
+Alternatively, the compatibility mode can be specified in your Vagrantfile:
+https://www.vagrantup.com/docs/provisioning/ansible_common.html#compatibility_mode
+
+    ns01: Running ansible-playbook...
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ns01]
+
+TASK [install packages] ********************************************************
+fatal: [ns01]: FAILED! => {"changed": false, "msg": "Failure talking to yum: Cannot find a valid baseurl for repo: base/7/x86_64"}
+
+PLAY RECAP *********************************************************************
+ns01                       : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Ansible failed to complete successfully. Any error output should be
+visible above. Please fix these errors and try again.
+user@user-VirtualBox:~/Desktop/SELinux/otus-linux-adm/selinux_dns_problems$ vagrant status
+Current machine states:
+
+ns01                      running (virtualbox)
+client                    not created (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+user@user-VirtualBox:~/Desktop/SELinux/otus-linux-adm/selinux_dns_problems$ 
+
