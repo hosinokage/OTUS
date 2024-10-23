@@ -1,0 +1,95 @@
+user@user-VirtualBox:~/Desktop/PAM$ vagrant ssh
+VM must be running to open SSH connection. Run `vagrant up`
+to start the virtual machine.
+user@user-VirtualBox:~/Desktop/PAM$ vagrant ssh
+user@user-VirtualBox:~/Desktop/PAM$ vagrant ssh
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-122-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Oct 23 18:39:59 UTC 2024
+
+  System load:  1.68              Processes:               106
+  Usage of /:   3.7% of 38.70GB   Users logged in:         0
+  Memory usage: 19%               IPv4 address for enp0s3: 10.0.2.15
+  Swap usage:   0%
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+New release '24.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+vagrant@pam:~$ Connection to 127.0.0.1 closed by remote host.
+user@user-VirtualBox:~/Desktop/PAM$ vagrant ssh
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-122-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Oct 23 18:39:59 UTC 2024
+
+  System load:  1.68              Processes:               106
+  Usage of /:   3.7% of 38.70GB   Users logged in:         0
+  Memory usage: 19%               IPv4 address for enp0s3: 10.0.2.15
+  Swap usage:   0%
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+New release '24.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Wed Oct 23 18:40:01 2024 from 10.0.2.2
+vagrant@pam:~$ sed -i 's/^PasswordAuthentication.*$/PasswordAuthentication yes/' /etc/ssh/sshd_config
+sed: couldn't open temporary file /etc/ssh/sedseXjY2: Permission denied
+vagrant@pam:~$ sudo -i
+root@pam:~# sed -i 's/^PasswordAuthentication.*$/PasswordAuthentication yes/' /etc/ssh/sshd_config
+root@pam:~# systemctl restart sshd.service
+
+root@pam:~# useradd otusadm && sudo useradd otus
+root@pam:~# passwd otusadm
+New password: 
+Retype new password: 
+passwd: password updated successfully
+root@pam:~# passwd otus
+New password: 
+Retype new password: 
+passwd: password updated successfully
+root@pam:~# sudo groupadd -f admin
+root@pam:~# usermod otusadm -a -G admin && usermod root -a -G admin && usermod vagrant -a -G admin
+root@pam:~# chmod 600 ~/.ssh/authorized_keys 
+root@pam:~# nano /etc/ssh/ssh_config
+root@pam:~# systemctl restart sshd.service
+root@pam:~# cat /etc/group | grep admin
+admin:x:118:otusadm,root,vagrant
+root@pam:~# vi /usr/local/bin/login.sh
+root@pam:~# chmod +x /usr/local/bin/login.sh
+root@pam:~# vi /etc/pam.d/sshd 
+root@pam:~# nano /etc/pam.d/sshd 
+root@pam:~# sudo date 082712302022.00
+Sat Aug 27 12:30:00 UTC 2022
+root@pam:~# systemctl restart sshd.service
+root@pam:~# 
+
