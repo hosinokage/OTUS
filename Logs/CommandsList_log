@@ -1,0 +1,64 @@
+user@user-VirtualBox:~/Desktop/Logs$ vagrant ssh log
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-116-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Wed Oct 23 07:32:59 PM UTC 2024
+
+  System load:  1.26               Processes:             156
+  Usage of /:   12.1% of 30.34GB   Users logged in:       0
+  Memory usage: 15%                IPv4 address for eth0: 10.0.2.15
+  Swap usage:   0%
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+vagrant@log:~$ sudo-i
+-bash: sudo-i: command not found
+vagrant@log:~$ sudo -i
+root@log:~# timedatectl 
+               Local time: Wed 2024-10-23 19:33:18 UTC
+           Universal time: Wed 2024-10-23 19:33:18 UTC
+                 RTC time: Wed 2024-10-23 19:33:19
+                Time zone: Etc/UTC (UTC, +0000)
+System clock synchronized: no
+              NTP service: inactive
+          RTC in local TZ: no
+root@log:~# date
+Wed Oct 23 19:33:43 UTC 2024
+root@log:~# apt list rsyslog
+Listing... Done
+rsyslog/jammy-updates,jammy-security,now 8.2112.0-2ubuntu2.2 amd64 [installed,automatic]
+N: There is 1 additional version. Please use the '-a' switch to see it
+root@log:~# apt list rsyslog -a
+Listing... Done
+rsyslog/jammy-updates,jammy-security,now 8.2112.0-2ubuntu2.2 amd64 [installed,automatic]
+rsyslog/jammy 8.2112.0-2ubuntu2 amd64
+
+root@log:~# nano /etc/rsyslog.conf 
+root@log:~# systemctl restart rsyslog
+root@log:~# ss -tuln
+Netid  State   Recv-Q  Send-Q    Local Address:Port   Peer Address:Port Process 
+udp    UNCONN  0       0               0.0.0.0:514         0.0.0.0:*            
+udp    UNCONN  0       0         127.0.0.53%lo:53          0.0.0.0:*            
+udp    UNCONN  0       0        10.0.2.15%eth0:68          0.0.0.0:*            
+udp    UNCONN  0       0                  [::]:514            [::]:*            
+tcp    LISTEN  0       25              0.0.0.0:514         0.0.0.0:*            
+tcp    LISTEN  0       4096      127.0.0.53%lo:53          0.0.0.0:*            
+tcp    LISTEN  0       128             0.0.0.0:22          0.0.0.0:*            
+tcp    LISTEN  0       25                 [::]:514            [::]:*            
+tcp    LISTEN  0       128                [::]:22             [::]:*            
+root@log:~# cat /var/log/rsyslog/web/nginx_access.log 
+Oct 23 19:47:57 web nginx_access: 192.168.56.1 - - [23/Oct/2024:19:47:57 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"
+Oct 23 19:47:58 web nginx_access: 192.168.56.1 - - [23/Oct/2024:19:47:58 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"
+root@log:~# cat /var/log/rsyslog/web/nginx_error.log 
+cat: /var/log/rsyslog/web/nginx_error.log: No such file or directory
+root@log:~# cat /var/log/rsyslog/web/nginx_error.log 
+Oct 23 19:49:31 web nginx_error: 2024/10/23 19:49:31 [error] 3135#3135: *2 directory index of "/var/www/html/" is forbidden, client: 192.168.56.1, server: _, request: "GET / HTTP/1.1", host: "192.168.56.10"
+Oct 23 19:49:33 web nginx_error: 2024/10/23 19:49:33 [error] 3135#3135: *2 directory index of "/var/www/html/" is forbidden, client: 192.168.56.1, server: _, request: "GET / HTTP/1.1", host: "192.168.56.10"
+root@log:~# 
+
