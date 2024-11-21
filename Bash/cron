@@ -1,0 +1,2 @@
+crontab -e
+0 */1 * * * /bin/bash -l -c '/path/to/taskbash.sh /path/to/access-4560-644067.log | mail -s "LOG REPORT" "email@domain.com"'
